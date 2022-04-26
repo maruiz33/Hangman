@@ -1,0 +1,298 @@
+const man = [
+  ` 
+    +---+
+    |   |
+        |
+        |
+        |
+        |
+  =========`, 
+  ` 
+    +---+
+    |   |
+    O   |
+        |
+        |
+        |
+  =========`, 
+ 
+  ` 
+    +---+
+    |   |
+    O   |
+    |   |
+        |
+        |
+  =========`, 
+ 
+  ` 
+    +---+
+    |   |
+    O   |
+   /|   |
+        |
+        |
+  =========`, 
+ 
+  ` 
+    +---+
+    |   |
+    O   |
+   /|\\  |
+        |
+        |
+  =========`, 
+ 
+  ` 
+    +---+
+    |   |
+    O   |
+   /|\\  |
+   /    |
+        |
+  =========`, 
+ 
+  ` 
+    +---+
+    |   |
+    O   |
+   /|\\  |
+   / \\  |
+        |
+  =========`]
+
+function gameplay(blankArray, wordArray) {
+  // let man = {0:'', 1: ('          0'), 2: ('          0' + '\n          |'), 3: ("          0\n" + "         -|"), 4: ("          0\n" + "         -|-\n"), 5: ("          0\n" + "         -|- \n" + "         /"), 6: ("          0\n" + "         -|- \n" + "         / \\ ") }
+  let incorrectAttempts = 0;
+  let wrongLetters = [];
+  console.log('----------------------')
+  while (incorrectAttempts < 6) {
+    console.log('\n')
+    console.log(blankArray.join(''))
+    let input = prompt("Guess a letter");
+    let flag = false
+
+    //check if input is in wordArray
+    for (let i = 0; i < wordArray.length; i++) {
+      if (input == wordArray[i]) {
+        blankArray[i] = input;
+        flag = true;
+        console.log(`Wrong letters: ${wrongLetters}`);
+      }
+      
+    
+    }
+    if (!blankArray.includes('_ ')) {
+      console.log('\n' + blankArray.join('').toUpperCase())
+      console.log("\n   >>>YOU WIN<<<")
+      break
+    }
+    // if flag false logic incorrect guess result
+    if (flag == false) {
+      incorrectAttempts += 1
+      wrongLetters.push(input)
+      console.log(`Wrong letters: ${wrongLetters}`)
+      
+    }
+    console.log('\n')
+    console.log('----------------------')
+      console.log(man[incorrectAttempts])
+  } if (incorrectAttempts === 6) {
+    console.log("\n You're HANGED");
+    console.log("The word was: "+ wordArray.join("") )
+  }
+
+}
+
+
+
+//start game
+
+const words = ['codesmith', 'bootcamp', 'speaker', 'mouthwash'];
+//randomly pick word from word bank
+let randomIndex = parseInt(Math.random() * (words.length - 0) + 0);
+//initialize wrong guess number
+//display array of underscores equal to letters in word
+let wordToGuess = words[randomIndex]
+let newArr = wordToGuess.split('');
+let blankArray = newArr.map(letter => '_ ')
+
+
+gameplay(blankArray, newArr);
+
+
+
+
+
+
+
+
+
+
+// sport game - player1 vs player2
+// 5 moves/attempts max
+// can be between 1-5 moves/steps
+// the more steps taken, the higher % of score increase
+// 
+
+
+
+// hang man
+// array of words
+// random pick word
+// player gives a letter
+// loop through word, if word includes letter, return updated word template           with this letter
+
+
+
+//  O - 1
+// -|- - 3 attempts
+//  /\ - 2 attempts
+// 5 guesses before lose - head,body, leg, leg, arm ,arm
+// if guess !== letter in word, add part
+// {
+//   head: O
+//   body: |, -|, -|-
+//   legs: 
+// }
+
+// prompt screen for number (this is index in word bank), 1 being easiest, 4 being hardest
+// wordBank = [1,2,3,4]
+
+//person:
+
+// console.log(man[4])
+// console.log(man[5])
+// console.log(man[6])
+
+// function pickword
+
+// function build hangman
+
+// [word1, word2 ,word3]
+// randomly pick one word
+// word.length
+// console log ("_"*word.length)
+// cat
+// _ _ _
+
+
+// const words = ["banana", 'computer', 'apple']
+// // Math.random() Math.floor(words.length)
+// let randomIndex = parseInt(Math.random() * (words.length - 0) + 0);
+// let wordToGuess = words[randomIndex]
+// console.log(wordToGuess)
+// console.log(wordToGuess.length)
+
+// let blankWord = wordToGuess.split("").map((el) => "_ ").join(" ")
+// console.log(blankWord)
+
+// let letterBank = wordToGuess.split("").reduce((acc, cur) => {
+//   acc[cur] = cur
+//   return acc
+// }, {});
+// // function getRandomArbitrary(min, max) {
+// //     return Math.random() * (max - min) + min;
+// //console.log(getRandomArbitrary())
+
+// let splittedWord = wordToGuess.split('');
+
+// console.log(splittedWord)
+
+
+
+
+
+//fixed the win logic - thoughts to improve it
+//display the gallows
+//play again loop?
+//refactor pseudo code
+
+//_____________________________________________________________________
+//__________________________________________________________________
+//_______________________ORIGINAL____________________________
+
+// function gameplay(blankArray, wordArray) {
+//   let man = { 1: ('0'), 2: (0 + '\n|'), 3: ("  0  \n" + " -|  "), 4: ("  0  \n" + " -|- \n"), 5: ("  0  \n" + " -|- \n" + " /   "), 6: ("  0  \n" + " -|- \n" + " / \\ ") }
+//   let incorrectAttempts = 0;
+//   while (incorrectAttempts < 6) {
+//     let input = prompt("Guess a letter");
+//     let flag = false
+//     //check if input is in wordArray
+//     for (let i = 0; i < wordArray.length; i++) {
+//       if (input == wordArray[i]) {
+//         blankArray[i] = input;
+//         flag = true;
+//       }
+      
+    
+//     }
+//     if (!blankArray.includes('_ ')) {
+//       console.log(blankArray.join(''))
+//       console.log("you win")
+//       break
+//     }
+//     // if flag false logic incorrect guess result
+//     if (flag == false) {
+//       incorrectAttempts += 1
+//       console.log(man[incorrectAttempts])
+
+//     } console.log(blankArray);
+//   } if (incorrectAttempts == 6) {
+//     console.log("You Lose");
+//   }
+
+// }
+
+
+
+// //start game
+
+// const words = ['codesmith', 'bootcamp', 'speaker', 'mouthwash'];
+// //randomly pick word from word bank
+// let randomIndex = parseInt(Math.random() * (words.length - 0) + 0);
+// //initialize wrong guess number
+// //display array of underscores equal to letters in word
+// let wordToGuess = words[randomIndex]
+// let newArr = wordToGuess.split('');
+// let blankArray = newArr.map(letter => '_ ')
+// console.log(blankArray.join(''))
+
+// gameplay(blankArray, newArr);
+
+
+
+
+//________________________________________________________________
+//_________________________________________________________________
+//___________________________________________________________________
+
+//take in letter input
+//for loop through word array to see if guessed letter is in word array
+
+//display the gallows with no man
+//ask the user for a letter guess
+//see if letter guessed in array of word's letters
+    // if no, wrong guess number +=1 console log new body part
+    // if yes, update the dash array with letters at correct indexes
+//gameplay(blankArray, newArr);
+
+//take in letter input
+//for loop through word array to see if guessed letter is in word array
+
+
+
+
+//display the gallows with no man
+//ask the user for a letter guess
+//see if letter guessed in array of word's letters
+    // if no, wrong guess number +=1 console log new body part
+    // if yes, update the dash array with letters at correct indexes by equating those indexes with the word's indexes letters guessed correctly, wrong number += 0
+//continue until wrong guess number = 6 or guess array equals the word chosen array 
+
+
+// getIndex 
+
+
+
+//
